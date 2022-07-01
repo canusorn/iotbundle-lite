@@ -38,6 +38,8 @@
                 datasets: [{
                     label: 'temp',
                     data: tempdata,
+                    backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
                 }]
             };
 
@@ -80,7 +82,7 @@
                         timedata.push(json.time);
 
                         myChart.data.datasets[0].data = tempdata;
-                        myChart.data.datasets[0].label = timedata;
+                        myChart.data.labels = timedata;
                         myChart.update();
 
                     })
