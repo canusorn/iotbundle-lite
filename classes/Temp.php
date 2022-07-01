@@ -47,8 +47,17 @@ class Temp{
         } else {
             return $stmt->errorInfo();
         }
+    }
 
-        //$this->pdo->lastInsertId();
+    public static function getLast( $columns = '*')
+    {
+        $pdo = new \PDO("sqlite:" . $_SERVER['DOCUMENT_ROOT'] . "/db/temp.db");
+        $sql = "SELECT $columns FROM 'temp' ORDER BY time DESC LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        if ($stmt->execute()) {
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $result;
+        }
     }
 
 }
