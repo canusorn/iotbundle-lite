@@ -50,6 +50,9 @@ void loop() {
     WiFiClient client;
     HTTPClient http;
 
+    int t = 20 + random(10);
+    int h = 60 + random(10);
+
     Serial.print("[HTTP] begin...\n");
     // configure traged server and url
     http.begin(client, "http://" SERVER_IP "/post.php"); //HTTP
@@ -57,8 +60,8 @@ void loop() {
 
     Serial.print("[HTTP] POST...\n");
     // start connection and send HTTP header and body
-    int httpCode = http.POST("{\"temp\":\"26\",\"humid\":\"65\"}");
-//{\"temp\":25,\"humid\":68}
+    int httpCode = http.POST("{\"temp\":\"" + String(t) + "\",\"humid\":\"" + String(h) + "\"}");
+    //{\"temp\":25,\"humid\":68}
     // httpCode will be negative on error
     if (httpCode > 0) {
       // HTTP header has been send and Server response header has been handled
